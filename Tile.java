@@ -8,11 +8,19 @@ import java.awt.geom.Ellipse2D;
 import java.util.Random;
 import javax.swing.JPanel;
 
+/**
+ * Hold the information of one tile 
+ * and manages it's changes and display
+ * @author 
+ */
 public class Tile extends JPanel {
 
     private String shape;
     private String color;
 
+    /**
+     * Constructor to initialize Tile variables
+     */
     public Tile() {
         this.setSize(300, 300);
         this.setBackground(Color.MAGENTA);
@@ -20,27 +28,51 @@ public class Tile extends JPanel {
         setRandomly();
     }
 
+    /**
+     * Constructor with initial parameters provided
+     * @param shape
+     * @param color
+     */
     public Tile(String shape, String color) {
         this.shape = shape;
         this.color = color;
     }
 
+    /**
+     * Return the shape of this tile
+     * @return
+     */
     public String getShape() {
         return shape;
     }
 
+    /**
+     * Set the shape of this tile
+     * @param shape
+     */
     public void setShape(String shape) {
         this.shape = shape;
     }
 
+    /**
+     * Return the color of this tile
+     * @return
+     */
     public String getColor() {
         return color;
     }
 
+    /**
+     * Set the color of this tile
+     * @param color
+     */
     public void setColor(String color) {
         this.color = color;
     }
 
+    /**
+     * Randomly set the values of this tile
+     */
     public void setRandomly() {
         Random rand = new Random();
         shape = "circle";
@@ -58,8 +90,10 @@ public class Tile extends JPanel {
         } else if (r > 20) {
             color = "#0000ff";
         }
+        repaint();
     }
 
+    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
@@ -73,6 +107,7 @@ public class Tile extends JPanel {
         g2.fill(shape);
     }
 
+    @Override
     public String toString() {
         return shape + " " + color;
     }

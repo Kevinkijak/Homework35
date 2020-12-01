@@ -12,6 +12,10 @@ import javax.swing.JOptionPane;
 
 
 public class TileWriter {
+
+    /**
+     * Static machine to write the TilePanel to a file
+     */
     public static void write(TilePanel app){
         try {
             File file = new File("slotMachine.bin");

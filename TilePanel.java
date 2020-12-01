@@ -17,13 +17,13 @@ import javax.swing.JPanel;
 public class TilePanel extends JPanel implements Serializable{
     private Tile tiles[];
     
+    /**
+     * Constructor to initialize Tile panel variables
+     */
     public TilePanel(){
-//        this.setBackground(Color.CYAN);
-//        this.setOpaque(true);
         this.setLayout(null);
         tiles = new Tile[4];
         this.setSize(700, 320);
-        Box panel = Box.createHorizontalBox();
         int x = 10,y = 20;
         for(int i = 0; i < 4; i++){
             Tile tile = new Tile();
@@ -57,26 +57,38 @@ public class TilePanel extends JPanel implements Serializable{
             });
             this.add(tiles[i]);
             tiles[i].repaint();
-//            panel.add(new JLabel("Yoh"));
-            //panel.add(Box.createRigidArea(new Dimension(10,10)));
         }
-        //this.add(panel);
-//        this.repaint();
         JPanel p = new JPanel();
         p.setBackground(Color.red);
         p.setOpaque(true);
         p.setSize(200,200);
-        //this.add(p);
     }
     
+    /**
+     * Return the Tile array of this panel
+     */
     public Tile[] getTiles(){
         return tiles;
     }
     
+    /**
+     * Set the tiles of this panel to the provided set
+     */
     public void setTiles(Tile[] tiles){
-        this.tiles = tiles;
+        for(int i = 0; i < tiles.length; i++){
+            this.tiles[i].setShape(tiles[i].getShape());
+            this.tiles[i].setColor(tiles[i].getColor());
+        }
         this.repaint();
         for(Tile t: tiles) t.repaint();
         
+    }
+    
+    /**
+     * Randomly reset all the tile variables
+     */
+    public void randomize(){
+        for(Tile t: tiles)
+            t.setRandomly();
     }
 }
